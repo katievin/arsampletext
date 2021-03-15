@@ -1,185 +1,30 @@
-<!-- BEGIN: Top HTML -->
 <!DOCTYPE html>
-<!-- include aframe -->
-<script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
-<!-- include ar.js -->
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+<html>
+<head>
 
-<!-- to load .ply model -->
-<script src="https://rawgit.com/donmccurdy/aframe-extras/v6.0.0/dist/aframe-extras.loaders.min.js"></script>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>GeoAR.js demo</title>
+ <!-- <script src="aframe-master.min.js"></script>-->
+  <script src='aframe-v0.9.2.min.js'></script>
+<!--  <script src="aframe-look-at-component.js"></script>-->
+  <script src='aframe-ar.js'></script>
+  <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+  <script>
+    THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
+  </script>
 
-<!-- END: Top HTML -->
-<!-- BEGIN: Unity Compiled Events -->
-<script>
-// var markerFound = 0;
-// AFRAME.registerComponent('button', {
-// init: function () {
-// var elem = document.documentElement;
-// var marker = document.querySelector("#marker");
-// var fullbutton = document.querySelector("#fullscreen");
-// marker.addEventListener("markerFound", function (evt) {
-// markerFound = 1;
-// });
-// marker.addEventListener("markerLost", function (evt) {
-// markerFound = 0;
-// });
+</head>
 
-//         fullbutton.addEventListener("click", function (evt) {
-//             if (fullscreen == 0) {
-//                 if (elem.requestFullscreen) {
-//                     elem.requestFullscreen();
-//             } else if (elem.mozRequestFullScreen) {
-//                     /* Firefox */
-//                 elem.mozRequestFullScreen();
-//             } else if (elem.webkitRequestFullscreen) {
-//                     /* Chrome, Safari and Opera */
-//                 elem.webkitRequestFullscreen();
-//             } else if (elem.msRequestFullscreen) {
-//                     /* IE/Edge */
-//                 elem.msRequestFullscreen();
-//             }
-//             fullbutton.setAttribute("src", "../exit_fullscreen.png");
-//             fullscreen = 1;
-//             } else {
-//                     if (document.exitFullscreen) {
-//                         document.exitFullscreen();
-//                 } else if (document.webkitExitFullscreen) {
-//                         document.webkitExitFullscreen();
-//                 } else if (document.mozCancelFullScreen) {
-//                         document.mozCancelFullScreen();
-//                 } else if (document.msExitFullscreen) {
-//                         document.msExitFullscreen();
-//                 }
-//                 fullbutton.setAttribute("src", "../fullscreen.png");
-//                 fullscreen = 0;
-//             }
-//         });
-// },
-// tick: function (totalTime, deltaTime) {
-// var dTime = deltaTime / 1000;
+<body style='margin: 0; overflow: hidden;'>
 
-// if (markerFound == 1) {
-// }
+<a-scene
+        vr-mode-ui="enabled: false"
+        embedded
+        arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
 
-
-//         function bezierEvaluate(p0, p1, p2, p3, t) {
-//             var u = (1 - t);                
-//             var uu = u * u;                
-//             var uuu = u * u * u;               
-//             var tt = t * t;               
-//             var ttt = t * t * t;               
-//             //B(t) = (1-t)^3*P0 3*(1-t)^2*t*P1 3*(1-t)*t^2*P2 t^3*P3 , 0 < t < 1               
-//             return (uuu * p0 + 3 * uu * t * p1 + 3 * u * tt * p2 + ttt * p3);          
-//         }          
-//         function bezierPath(p0, p1, p2, p3, t) {               
-//             return new THREE.Vector3(                   
-//                 bezierEvaluate(p0.x, p1.x, p2.x, p3.x, t),                   
-//                 bezierEvaluate(p0.y, p1.y, p2.y, p3.y, t),                   
-//                 bezierEvaluate(p0.z, p1.z, p2.z, p3.z, t)               
-//             );           
-//         }     
-//     }
-// });
-</script>
-<!-- END: Unity Compiled Events -->
-
-<!-- BEGIN: Middle HTML -->
-<body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
-
-        <!-- <a-scene embedded arjs='debugUIEnabled: false; sourceType: video; sourceUrl:../../data/videos/headtracking.mp4;'> -->
-        <div style="position:absolute;z-index:101;top:0;">
-      速度:<input v-model="ballvelocity">
-      <button @click="resetball">重置</button>
-      <button @click="throwball">丟出</button>
-    </div>
-    <div style="position:absolute;z-index:100;top:0;left:0;width:100vw;height:100vh;" :touchstart="touch">
-    </div>
-    
-<a-scene arjs physics="debug:false;">
-<!-- END: Middle HTML -->
-
-<!-- BEGIN: Unity Compiled Assets -->
-<!-- END: Unity Compiled Assets -->
-<!-- BEGIN: Add Image Target (marker) -->
-<!-- <a-entity
-        v-for="(t,index) in ballarr" :key="index"
-        :position="ball.position"
-        :velocity="ball.velocity"
-        :angularVelocity="ball.angularVelocity"
-        material="color:green;"
-        geometry="primitive:sphere; radius: 0.4;"
-        dynamic-body
-      ></a-entity> -->
-        <!-- <a-entity
-          position="-2 0 -7"
-          scale="2.5 1 2.5"
-          static-body="shape:mesh"
-          gltf-model="/models/SecretPlan/argame/basket.gltf"
-        >
-        </a-entity> -->
-        <!-- <a-box id="basket1"
-         color="red"
-         position="-2 -0.2 -7"
-         depth="0.01" width="0.01" height="0.01"></a-box> -->
-        <!-- <a-entity
-          position="2 0 -7"
-          scale="2.5 1 2.5"
-          static-body="shape:mesh"
-          gltf-model="/models/SecretPlan/argame/basket.gltf"
-        >
-        </a-entity> -->
-        <a-entity
-          gltf-model="models/SecretPlantext1.obj"
-          gps-entity-place="longitude: 121.489049; latitude: 25.079762;"
-          position="0 0 0"
-          scale="100 100 100"
-        >
-        </a-entity>
-        <!-- <a-plane
-          gps-entity-place="latitude: 25.079731;longitude: 121.489220;"
-         color="blue"
-         position="0 1 -7.8"
-         rotation="0 0 0" width="6" height="2"></a-plane>
-
-        <a-plane
-         static-body
-          position="0 -1.5 0"
-         rotation="-90 0 0" width="100" height="100"></a-plane> -->
-      <!-- <a-marker type="pattern" preset="secret" url="/models/Pattern/secretpattern2.patt" id="maker"> -->
-        <!-- <a-entity id="basket"
-          position="0 0 0"
-          scale="1 1 1"
-          static-body="shape:mesh"
-          gltf-model="/models/SecretPlan/argame/basket.gltf"
-        >
-        </a-entity> -->
-        <!-- <a-entity id="entity"
-          animation="property: rotation; from:  0 0 0;to: 0 0 359; loop: true; dur: 10000"
-          position="0 0 0"
-          rotation="0 0 0"
-          scale="0.2 0.2 0.2"
-          gltf-model="/models/SecretPlan/SecretPlantext1.gltf"
-        > -->
-        <!-- <a-entity id="entity"
-          :animation="markerpos.animation"
-          :position="markerpos.position"
-          :rotation="markerpos.rotation"
-          :scale="markerpos.scale"
-          :gltf-model="markerpos.location"
-        >
-        </a-entity> -->
-        <!-- <a-entity obj-model="obj: #Model_Asset_obj_1; mtl: #Model_Asset_mtl_1" scale="0.1 0.1 0.1" class="intersectable" position="0 0 0" rotation="0 0 0" color="#000000"
-></a-entity> -->
-        <!-- <a-obj-model src="#Model_Asset_obj_0" mtl="#Model_Asset_mtl_1"  scale="1.5 1 1.5" class="intersectable" position="4.5 2 -1.75" rotation="0 0 0" color="#000000"></a-obj-model> -->
-        <!-- <a-entity obj-model="obj: #Model_Asset_obj_0; mtl: #Model_Asset_mtl_1" scale="0.15 0.1 0.15" class="intersectable" position="-0.45 0.2 -0.175" rotation="0 0 0" color="#000000" ></a-entity> -->
-        <!-- <a-text value="Secret Plan" geometry="primitive:plane"></a-text> -->
-        <!-- <a-box width="0.1" height="0.1" depth="0.1" class="intersectable" position="0 0.182 0" rotation="0 0 0" color="#FFFFFF"
-        ></a-box> -->
-      <!-- </a-marker> -->
-      <!-- <a-entity id="blushing-cube" geometry="primitive: box">
-        <a-animation attribute="material.color" from="white" to="red" dur="1000"></a-animation>
-      </a-entity> -->
- <a-entity gps-camera rotation-reader></a-entity>
+  <a-entity gltf-model="assets/magnemite/scene.gltf" rotation="90 90 90" scale="0.10 0.10 0.10" gps-entity-place="longitude:121.489049; latitude:25.079762;" animation-mixer/>
+  <a-camera gps-camera rotation-reader>
+  </a-camera>
 </a-scene>
 </body>
-</html><!-- END: Bottom HTML -->
