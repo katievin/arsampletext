@@ -15,7 +15,8 @@
   <script>
   AFRAME.registerComponent('clickhandler', {
         init: function() {
-            this.el.addEventListener('click', () => {
+            this.el.addEventListener('click', (event) => {
+                console.log(event)
                 alert('Clicked!')
             });
     }});
@@ -41,9 +42,27 @@
     <a-text
       value="This content will always face you."
       scale="5 5 5"
+      position="0 0 0"
+      look-at="[gps-camera]"
       gps-entity-place="latitude:25.079749; longitude:121.489283;"
     ></a-text>
-    <a-entity
+    <a-text
+      clickhandler
+      look-at="[gps-camera]"
+      value="對"
+      scale="3 3 3"
+      position="0 0 -1"
+      gps-entity-place="latitude:25.079749; longitude:121.489283;"
+    ></a-text>
+    <a-text
+      clickhandler
+      look-at="[gps-camera]"
+      value="錯"
+      scale="3 3 3"
+      position="0 0 -1"
+      gps-entity-place="latitude:25.079749; longitude:121.489283;"
+    ></a-text>
+    <!-- <a-entity
         clickhandler
         look-at="[gps-camera]"
         gps-entity-place="latitude:25.079749; longitude:121.489283;"
@@ -52,7 +71,7 @@
         static-body="shape:mesh"
         gltf-model="./models/basket.gltf"
     >
-    </a-entity>
+    </a-entity> -->
   <!-- <a-entity gltf-model="models/SecretPlantext1.obj" rotation="90 90 90" scale="1000000 1000000 1000000" gps-entity-place="longitude:121.489200; latitude:25.079800;" animation-mixer/> -->
   <a-camera gps-camera rotation-reader>
   </a-camera>
