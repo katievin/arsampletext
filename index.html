@@ -13,18 +13,11 @@
     THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
   </script> -->
   <script>
-  AFRAME.registerComponent('clickhandler1', {
+  AFRAME.registerComponent('clickhandler', {
         init: function() {
             this.el.addEventListener('click', (event) => {
                 console.log(event)
                 alert('禮物在書桌最下面抽屜')
-            });
-    }});
-    AFRAME.registerComponent('clickhandler2', {
-        init: function() {
-            this.el.addEventListener('click', (event) => {
-                console.log(event)
-                alert('禮物要自己找')
             });
     }});
   </script>
@@ -54,19 +47,21 @@
       gps-entity-place="latitude:25.079727; longitude:121.489068;"
     ></a-text>
     <a-text
-      clickhandler1
       value="Yes"
       scale="8 8 8"
       position="0 0.03 0"
       gps-entity-place="latitude:25.079727; longitude:121.489068;"
     ></a-text>
-    <a-text
-      clickhandler2
-      value="No"
+    <a-box
+      clickhandler
+      value="Yes"
       scale="8 8 8"
-      position="0 -0.03 0"
+      width="0.1"
+      height="0.1"
+      depth="0.1"
+      position="0 0.03 0"
       gps-entity-place="latitude:25.079727; longitude:121.489068;"
-    ></a-text>
+    ></a-box>
     <!-- <a-entity
         clickhandler
         look-at="[gps-camera]"
