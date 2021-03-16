@@ -39,7 +39,7 @@
     ></a-text>
     <a-entity
         gps-entity-place="latitude:25.079749; longitude:121.489283;"
-        position="0 2 0"
+        position="0 0 -2"
         scale="2.5 1 2.5"
         static-body="shape:mesh"
         gltf-model="./models/basket.gltf"
@@ -50,8 +50,8 @@
   </a-camera>
 </a-scene>
 <script>
-document.addEventListener('touchstart', touchstart, false)
-document.addEventListener('touchend', touchend, false)
+document.addEventListener('touchstart', touchstart(), false)
+document.addEventListener('touchend', touchend(), false)
 let starttime = null
 let startposition = null
 const touchstart = (event:TouchEvent) => {
