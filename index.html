@@ -39,7 +39,7 @@
     ></a-text>
     <a-entity
         gps-entity-place="latitude:25.079749; longitude:121.489283;"
-        position="0 0 2"
+        position="0 0 5"
         scale="2.5 1 2.5"
         static-body="shape:mesh"
         gltf-model="./models/basket.gltf"
@@ -55,18 +55,13 @@ let startposition = null
 $ = (sel) => document.querySelector(sel)
 // document.addEventListener('touchstart', touchstart(starttime,startposition), false)
 // document.addEventListener('touchend', touchend(starttime,startposition), false)
-$("#www").addEventListener("touchstart",touchstart(window.event,starttime,startposition))
-$("#www").addEventListener("touchend",touchend(window.event,starttime,startposition))
+$("#www").addEventListener("touchstart",function(event){touchstart(event,starttime,startposition)})
+$("#www").addEventListener("touchend",function(event){touchend(event,starttime,startposition)})
 function touchstart(event,starttime,startposition) {
-    console.log(event)
-    if(event!==undefined){
-    console.log('start')
       starttime = new Date
       startposition = { x: event.touches[0].clientX, y: event.touches[0].clientY }
-    }
 }
 function touchend(event,starttime,startposition){
-if(event!==undefined){
     if (starttime !== null) {
     console.log('end')
     const time = (new Date().getTime() - starttime.getTime()) / 1000
@@ -76,7 +71,6 @@ if(event!==undefined){
     const ay = y / document.body.clientHeight
     const ax = x / document.body.clientWidth
     throwball(v, ay, ax)
-}
 }
 }
 function throwball(v, ay, angle) {
