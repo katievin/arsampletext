@@ -13,11 +13,18 @@
     THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
   </script> -->
   <script>
-  AFRAME.registerComponent('clickhandler', {
+  AFRAME.registerComponent('clickhandler1', {
         init: function() {
             this.el.addEventListener('click', (event) => {
                 console.log(event)
-                alert('Clicked!')
+                alert('禮物在書桌最下面抽屜')
+            });
+    }});
+    AFRAME.registerComponent('clickhandler2', {
+        init: function() {
+            this.el.addEventListener('click', (event) => {
+                console.log(event)
+                alert('禮物要自己找')
             });
     }});
   </script>
@@ -40,26 +47,26 @@
 </a-scene> -->
 <a-scene arjs physics="debug:false;" raycaster="objects: [clickhandler];" cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;'>
     <a-text
-      value="This content will always face you."
+      value="Am I your favorite cat"
       scale="5 5 5"
       position="0 0 0"
       look-at="[gps-camera]"
       gps-entity-place="latitude:25.079749; longitude:121.489283;"
     ></a-text>
     <a-text
-      clickhandler
+      clickhandler1
       look-at="[gps-camera]"
-      value="對"
+      value="Yes"
       scale="3 3 3"
-      position="0 0 -1"
+      position="0 0 -0.3"
       gps-entity-place="latitude:25.079749; longitude:121.489283;"
     ></a-text>
     <a-text
-      clickhandler
+      clickhandler2
       look-at="[gps-camera]"
-      value="錯"
+      value="No"
       scale="3 3 3"
-      position="0 0 -1"
+      position="0 0 -0.3"
       gps-entity-place="latitude:25.079749; longitude:121.489283;"
     ></a-text>
     <!-- <a-entity
