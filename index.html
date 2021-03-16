@@ -21,8 +21,13 @@
         vr-mode-ui="enabled: false"
         embedded
 >
-
-  <a-entity gltf-model="models/SecretPlantext1.obj" rotation="90 90 90" scale="1000000 1000000 1000000" gps-entity-place="longitude:121.489035; latitude:25.079706;" animation-mixer/>
+    <a-text
+      value="This content will always face you."
+      look-at="[gps-camera]"
+      scale="120 120 120"
+      gps-entity-place="latitude:25.079800;longitude:121.489200;"
+    ></a-text>
+  <a-entity gltf-model="models/SecretPlantext1.obj" rotation="90 90 90" scale="1000000 1000000 1000000" gps-entity-place="longitude:121.489200; latitude:25.079800;" animation-mixer/>
   <a-camera gps-camera rotation-reader>
   </a-camera>
 </a-scene>
