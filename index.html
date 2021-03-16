@@ -12,14 +12,22 @@
 <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v3.13.1/dist/aframe-extras.min.js"></script>  <!-- <script>
     THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
   </script> -->
+  <script>
+  AFRAME.registerComponent('clickhandler', {
+        init: function() {
+            this.el.addEventListener('click', () => {
+                alert('Clicked!')
+            });
+    }});
+  </script>
 
 </head>
 
 <body style='margin: 0; overflow: hidden;'>
 <div style="position:absolute;z-index:100;top:0;left:0;width:100vw;height:100vh;" id="www">
 </div>
-<a-scene arjs physics="debug:false;">
-<a-entity id="ball"
+<!-- <a-scene arjs physics="debug:false;">
+<a-entity id="answer"
         look-controls
         position="0 0.6 -4"
         material="color:green;"
@@ -30,7 +38,7 @@
          static-body
          rotation="-90 0 0" width="100" height="100"></a-plane>
          <a-camera></a-camera>
-</a-scene>
+</a-scene> -->
 <a-scene arjs physics="debug:false;">
     <a-text
       value="This content will always face you."
@@ -38,13 +46,15 @@
       gps-entity-place="latitude:25.079749; longitude:121.489283;"
     ></a-text>
     <a-entity
+        clickhandler
+        id="answer"
         gps-entity-place="latitude:25.079749; longitude:121.489283;"
         position="0 0 5"
         scale="2.5 1 2.5"
         static-body="shape:mesh"
         gltf-model="./models/basket.gltf"
     >
-    <a-plane id="plane"
+    <a-plane
         color="red"
         gps-entity-place="latitude:25.079749; longitude:121.489283;"
          static-body
@@ -61,32 +71,35 @@ let throw1 = false
 $ = (sel) => document.querySelector(sel)
 // document.addEventListener('touchstart', touchstart(starttime,startposition), false)
 // document.addEventListener('touchend', touchend(starttime,startposition), false)
-$("#www").addEventListener("touchstart",function(event){starttime = new Date
-      startposition = { x: event.touches[0].clientX, y: event.touches[0].clientY }})
-$("#www").addEventListener("touchend",function(event){if (starttime !== null) {
-    console.log('end')
-    const time = (new Date().getTime() - starttime.getTime()) / 1000
-    const v = (0.2 / time) * 3
-    const x = event.changedTouches[0].clientX - startposition.x
-    const y = Math.abs(event.changedTouches[0].clientY - startposition.y)
-    const ay = y / document.body.clientHeight
-    const ax = x / document.body.clientWidth
-    $("#ball").body.position.set(0, 0.6,-4)
-      $("#ball").body.velocity.set(v * 6 * ax,v * 4.5 * Math.sin(ay * 0.3925 + 0.3925),-v * Math.cos(ay * 0.3925 + 0.3925))
-      throw1 = true
-    //   ball.value.velocity = String(v * 6 * angle) + ' ' + String(v * 4.5 * Math.sin(ay * 0.3925 + 0.3925)) + ' ' + String(-v * Math.cos(ay * 0.3925 + 0.3925))
-}})
-$("#ball").addEventListener("collide",function(event){
-    if(throw1){
-    throw1 = false
-    console.log('reset')
-    const plane = $('#plane')
-    if(event.detail.body.id === plane.body.id){
-        $("#ball").body.position.set(0, 0.6,-4)
-        $("#ball").body.velocity.set(0, 0, 0)
-    }
-    }
-})
+// 下面為丟球
+// $("#www").addEventListener("touchstart",function(event){starttime = new Date
+//       startposition = { x: event.touches[0].clientX, y: event.touches[0].clientY }})
+// $("#www").addEventListener("touchend",function(event){if (starttime !== null) {
+//     console.log('end')
+//     const time = (new Date().getTime() - starttime.getTime()) / 1000
+//     const v = (0.2 / time) * 3
+//     const x = event.changedTouches[0].clientX - startposition.x
+//     const y = Math.abs(event.changedTouches[0].clientY - startposition.y)
+//     const ay = y / document.body.clientHeight
+//     const ax = x / document.body.clientWidth
+//     $("#ball").body.position.set(0, 0.6,-4)
+//       $("#ball").body.velocity.set(v * 6 * ax,v * 4.5 * Math.sin(ay * 0.3925 + 0.3925),-v * Math.cos(ay * 0.3925 + 0.3925))
+//       throw1 = true
+//     //   ball.value.velocity = String(v * 6 * angle) + ' ' + String(v * 4.5 * Math.sin(ay * 0.3925 + 0.3925)) + ' ' + String(-v * Math.cos(ay * 0.3925 + 0.3925))
+// }})
+// $("#ball").addEventListener("collide",function(event){
+//     if(throw1){
+//     throw1 = false
+//     console.log('reset')
+//     const plane = $('#plane')
+//     if(event.detail.body.id === plane.body.id){
+//         $("#ball").body.position.set(0, 0.6,-4)
+//         $("#ball").body.velocity.set(0, 0, 0)
+//     }
+//     }
+// })
+// 上面為丟球
+// $("#answer").addEventListener("click",function(){console.log(123)})
 function throwball(v, ay, angle) {
       // 丟球的位置
       console.log('throw')
