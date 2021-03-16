@@ -17,7 +17,19 @@
 </head>
 
 <body style='margin: 0; overflow: hidden;'>
-
+<a-scene arjs physics="debug:false;">
+<a-entity id="ball"
+        position="0 0.6 -4"
+        material="color:green;"
+        geometry="primitive:sphere; radius: 0.4;"
+        dynamic-body
+      ></a-entity>
+    <a-plane color='red'
+         static-body
+         rotation="-90 0 0" width="100" height="100"></a-plane>
+         <a-camera>
+  </a-camera>
+</a-scene>
 <a-scene arjs physics="debug:false;">
     <a-text
       value="This content will always face you."
@@ -28,18 +40,9 @@
         gps-entity-place="latitude:25.079749; longitude:121.489283;"
         scale="2.5 1 2.5"
         static-body="shape:mesh"
-        gltf-model="/models/basket.gltf"
+        gltf-model="./models/basket.gltf"
     >
     </a-entity>
-    <a-entity id="ball"
-        position="0 0.6 -4"
-        material="color:green;"
-        geometry="primitive:sphere; radius: 0.4;"
-        dynamic-body
-      ></a-entity>
-    <a-plane color='red'
-         static-body
-         rotation="-90 0 0" width="100" height="100"></a-plane>
   <!-- <a-entity gltf-model="models/SecretPlantext1.obj" rotation="90 90 90" scale="1000000 1000000 1000000" gps-entity-place="longitude:121.489200; latitude:25.079800;" animation-mixer/> -->
   <a-camera gps-camera rotation-reader>
   </a-camera>
@@ -50,11 +53,13 @@ document.addEventListener('touchend', touchend, false)
 let starttime = null
 let startposition = null
 const touchstart = (event:TouchEvent) => {
+      console.log('start')
       starttime = new Date()
       startposition = { x: event.touches[0].clientX, y: event.touches[0].clientY }
     }
 const touchend = (event:TouchEvent) => {
 if (starttime !== null) {
+    console.log('end')
     const time = (new Date().getTime() - starttime.getTime()) / 1000
     const v = (0.2 / time) * 3
     const x = event.changedTouches[0].clientX - startposition.x
@@ -67,6 +72,7 @@ if (starttime !== null) {
 $ = (sel) => document.querySelector(sel)
 const throwball = (v:number, ay:number, angle:number) => {
       // 丟球的位置
+      console.log('throw')
       $("#ball").body.position.set(0, 0.6,-4)
       $("#ball").body.velocity.set(v * 6 * angle,v * 4.5 * Math.sin(ay * 0.3925 + 0.3925),-v * Math.cos(ay * 0.3925 + 0.3925))
     //   ball.value.velocity = String(v * 6 * angle) + ' ' + String(v * 4.5 * Math.sin(ay * 0.3925 + 0.3925)) + ' ' + String(-v * Math.cos(ay * 0.3925 + 0.3925))
