@@ -47,26 +47,29 @@
 </a-scene> -->
 <a-scene arjs physics="debug:false;" raycaster="objects: [clickhandler];" cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;'>
     <a-text
+        color="red"
       value="Am I your favorite cat"
       scale="5 5 5"
-      position="0 -0.5 0"
+      position="0 0 0"
       look-at="[gps-camera]"
       gps-entity-place="latitude:25.079749; longitude:121.489283;"
     ></a-text>
     <a-text
       clickhandler1
+      color="green"
       look-at="[gps-camera]"
       value="Yes"
       scale="3 3 3"
-      position="0 -1 0"
+      position="0 -0.2 0"
       gps-entity-place="latitude:25.079749; longitude:121.489283;"
     ></a-text>
     <a-text
       clickhandler2
+      color="green"
       look-at="[gps-camera]"
       value="No"
       scale="3 3 3"
-      position="0 0 -0.3"
+      position="0 -0.4 0"
       gps-entity-place="latitude:25.079749; longitude:121.489283;"
     ></a-text>
     <!-- <a-entity
