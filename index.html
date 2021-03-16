@@ -50,13 +50,13 @@
   </a-camera>
 </a-scene>
 <script>
-document.addEventListener('touchstart', touchstart(), false)
-document.addEventListener('touchend', touchend(), false)
 let starttime = null
 let startposition = null
-function touchstart(event) {
+document.addEventListener('touchstart', touchstart(e,starttime,startposition), false)
+document.addEventListener('touchend', touchend(e,starttime,startposition), false)
+function touchstart(event,starttime,startposition) {
       console.log('start')
-      starttime = new Date()
+      starttime = new Date
       startposition = { x: event.touches[0].clientX, y: event.touches[0].clientY }
     }
 function touchend(event){
