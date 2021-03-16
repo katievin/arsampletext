@@ -20,7 +20,7 @@
 </div>
 <a-scene arjs physics="debug:false;">
 <a-entity id="ball"
-        look-at="[camera]"
+        look-controls
         position="0 0.6 -4"
         material="color:green;"
         geometry="primitive:sphere; radius: 0.4;"
@@ -29,20 +29,18 @@
     <a-plane id="plane"
          static-body
          rotation="-90 0 0" width="100" height="100"></a-plane>
-         <a-camera rotation-reader></a-camera>
+         <a-camera></a-camera>
 </a-scene>
 <a-scene arjs physics="debug:false;">
     <a-text
       value="This content will always face you."
       scale="5 5 5"
-      look-at="[gps-camera]"
       gps-entity-place="latitude:25.079749; longitude:121.489283;"
     ></a-text>
     <a-entity
         gps-entity-place="latitude:25.079749; longitude:121.489283;"
         position="0 0 5"
         scale="2.5 1 2.5"
-        look-at="[gps-camera]"
         static-body="shape:mesh"
         gltf-model="./models/basket.gltf"
     >
