@@ -39,7 +39,7 @@
     ></a-text>
     <a-entity
         gps-entity-place="latitude:25.079749; longitude:121.489283;"
-        position="0 0 -2"
+        position="0 0 2"
         scale="2.5 1 2.5"
         static-body="shape:mesh"
         gltf-model="./models/basket.gltf"
@@ -54,12 +54,12 @@ document.addEventListener('touchstart', touchstart(), false)
 document.addEventListener('touchend', touchend(), false)
 let starttime = null
 let startposition = null
-const touchstart = (event:TouchEvent) => {
+function touchstart(event) {
       console.log('start')
       starttime = new Date()
       startposition = { x: event.touches[0].clientX, y: event.touches[0].clientY }
     }
-const touchend = (event:TouchEvent) => {
+function touchend(event){
 if (starttime !== null) {
     console.log('end')
     const time = (new Date().getTime() - starttime.getTime()) / 1000
@@ -72,7 +72,7 @@ if (starttime !== null) {
 }
 }
 $ = (sel) => document.querySelector(sel)
-const throwball = (v:number, ay:number, angle:number) => {
+function throwball(v, ay, angle) {
       // 丟球的位置
       console.log('throw')
       $("#ball").body.position.set(0, 0.6,-4)
