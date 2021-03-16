@@ -17,7 +17,7 @@
 </head>
 
 <body style='margin: 0; overflow: hidden;'>
-<div style="position:absolute;z-index:100;top:0;left:0;width:100vw;height:100vh;" ontouchstart="touchstart">
+<div style="position:absolute;z-index:100;top:0;left:0;width:100vw;height:100vh;" ontouchstart="touchstart(starttime,startposition)">
 </div>
 <a-scene arjs physics="debug:false;">
 <a-entity id="ball"
@@ -52,15 +52,17 @@
 <script>
 let starttime = null
 let startposition = null
-document.addEventListener('touchstart', touchstart(e,starttime,startposition), false)
-document.addEventListener('touchend', touchend(e,starttime,startposition), false)
+document.addEventListener('touchstart', touchstart(starttime,startposition), false)
+document.addEventListener('touchend', touchend(starttime,startposition), false)
 function touchstart(event,starttime,startposition) {
-      console.log('start')
+    if(event!==null){
       starttime = new Date
       startposition = { x: event.touches[0].clientX, y: event.touches[0].clientY }
     }
-function touchend(event){
-if (starttime !== null) {
+}
+function touchend(event,starttime,startposition){
+if(event!==null){
+    if (starttime !== null) {
     console.log('end')
     const time = (new Date().getTime() - starttime.getTime()) / 1000
     const v = (0.2 / time) * 3
@@ -69,6 +71,7 @@ if (starttime !== null) {
     const ay = y / document.body.clientHeight
     const ax = x / document.body.clientWidth
     throwball(v, ay, ax)
+}
 }
 }
 $ = (sel) => document.querySelector(sel)
