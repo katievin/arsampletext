@@ -17,7 +17,7 @@
 </head>
 
 <body style='margin: 0; overflow: hidden;'>
-<div style="position:absolute;z-index:100;top:0;left:0;width:100vw;height:100vh;" ontouchstart="touchstart()">
+<div style="position:absolute;z-index:100;top:0;left:0;width:100vw;height:100vh;" ontouchstart="touchstart">
 </div>
 <a-scene arjs physics="debug:false;">
 <a-entity id="ball"
@@ -39,7 +39,7 @@
     ></a-text>
     <a-entity
         gps-entity-place="latitude:25.079749; longitude:121.489283;"
-        position="0 2 -2"
+        position="0 2 0"
         scale="2.5 1 2.5"
         static-body="shape:mesh"
         gltf-model="./models/basket.gltf"
@@ -50,7 +50,7 @@
   </a-camera>
 </a-scene>
 <script>
-document.body.addEventListener('touchstart', touchstart, false)
+document.addEventListener('touchstart', touchstart, false)
 document.addEventListener('touchend', touchend, false)
 let starttime = null
 let startposition = null
