@@ -13,18 +13,11 @@
     THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
   </script> -->
   <script>
-  AFRAME.registerComponent('clickhandler1', {
+  AFRAME.registerComponent('clickhandler', {
         init: function() {
             this.el.addEventListener('click', (event) => {
                 console.log(event)
-                alert('對')
-            });
-    }});
-  AFRAME.registerComponent('clickhandler2', {
-        init: function() {
-            this.el.addEventListener('click', (event) => {
-                console.log(event)
-                alert('錯')
+                alert(event.target.value)
             });
     }});
   </script>
@@ -67,7 +60,7 @@
     <a-image src="./ques.png" scale="1 1 1"position="0 1 -4"></a-image>
     <a-camera rotation-reader>
 </a-scene> -->
-<a-scene arjs physics="debug:false;"  cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;'>
+<a-scene arjs physics="debug:false;" raycaster="objects: [clickhandler]"  cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;'>
     <!-- <a-text
         color="red"
       value="Am I your favorite cat"
@@ -92,8 +85,8 @@
       gps-entity-place="latitude:25.079738; longitude:121.489074;"
     ></a-box> -->
     <a-image gps-entity-place="latitude:25.079738; longitude:121.489074;" src="images/ques.png" scale="10 10 1" position="0 1 -4"></a-image>
-    <a-image gps-entity-place="latitude:25.079738; longitude:121.489074;" src="images/answer1.png" scale="10 5 1"position="10 1 -4" clickhandler1></a-image>
-    <a-image gps-entity-place="latitude:25.079738; longitude:121.489074;" src="images/answer2.png" scale="10 5 1"position="10 6 -4" clickhandler2></a-image>
+    <a-image gps-entity-place="latitude:25.079738; longitude:121.489074;" src="images/answer1.png" scale="10 5 1"position="10 1 -6" clickhandler></a-image>
+    <a-image gps-entity-place="latitude:25.079738; longitude:121.489074;" src="images/answer2.png" scale="10 5 1"position="10 6 -6" clickhandler></a-image>
   <a-camera gps-camera rotation-reader>
   </a-camera>
 </a-scene>
