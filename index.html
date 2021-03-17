@@ -16,8 +16,7 @@
   AFRAME.registerComponent('clickhandler', {
         init: function() {
             this.el.addEventListener('click', (event) => {
-                console.log(event)
-                alert(event)
+                document.getElementById("answercon").style.display = "inline-block"
             });
     }});
   </script>
@@ -25,8 +24,12 @@
 </head>
 
 <body style='margin: 0; overflow: hidden;'>
-<!-- <a-scene arjs raycaster="objects: [clickhandler];" cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;'>
-<a-entity id="answer"
+<div id="answercon" style="z-index:1;position: absolute;top:20px;width: 90%;left: 5%;display: none;">
+  <div class="answer" value="有一杯飲料為禮物" style="font-size: 30px;float: left;text-align: center;margin: 0 2%;width: 46%;border: 5px solid #82adaa;border-radius: 5px;display: inline-block;box-sizing: border-box;color: #82adaa;">毬毬</div>
+  <div class="answer" value="沒有禮物" style="font-size: 30px;float: left;text-align: center;margin: 0 2%;width: 46%;border: 5px solid #82adaa;border-radius: 5px;display: inline-block;box-sizing: border-box;color: #82adaa;">荳荳</div>
+</div>
+<!-- <a-scene arjs raycaster="objects: [clickhandler];" cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;'> -->
+<!-- <a-entity id="answer"
         clickhandler
         position="0 0.6 -4"
         material="color:green;"
@@ -47,18 +50,16 @@
       value="Yes"
       scale="8 8 8"
       position="0 3 -3"
-    ></a-text>
-    <a-box
+    ></a-text> -->
+    <!-- <a-box
       clickhandler
-      value="Yes"
       scale="8 8 8"
       width="0.1"
       height="0.1"
       depth="0.1"
       position="-1 3 -4"
-    ></a-box>
-    <a-image src="./ques.png" scale="1 1 1"position="0 1 -4"></a-image>
-    <a-camera rotation-reader>
+    ></a-box> -->
+    <!-- <a-camera rotation-reader>
 </a-scene> -->
 <a-scene arjs physics="debug:false;" raycaster="objects: [clickhandler]"  cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;'>
     <!-- <a-text
@@ -84,9 +85,7 @@
       position="0 0.03 0"
       gps-entity-place="latitude:25.079738; longitude:121.489074;"
     ></a-box> -->
-    <a-image gps-entity-place="latitude:25.079738; longitude:121.489074;" src="images/ques.png" scale="10 10 1" position="0 1 -4"></a-image>
-    <a-image gps-entity-place="latitude:25.079768; longitude:121.489074;" src="images/answer1.png" scale="10 5 1"position="10 1 -6" value="yes" clickhandler></a-image>
-    <a-image gps-entity-place="latitude:25.079768; longitude:121.489094;" src="images/answer2.png" scale="10 5 1"position="10 6 -6" value="no" clickhandler></a-image>
+    <a-image gps-entity-place="latitude:25.083614; longitude:121.481466;" src="images/ques.png" scale="10 10 1" position="0 1 -4" clickhandler></a-image>
   <a-camera gps-camera rotation-reader>
   </a-camera>
 </a-scene>
@@ -94,7 +93,13 @@
 let starttime = null
 let startposition = null
 let throw1 = false
-$ = (sel) => document.querySelector(sel)
+$$ = (sel) => document.querySelectorAll(sel)
+for(const a of $$(".answer")){
+  a.addEventListener('click', function(event){
+  alert(event.target.getAttribute("value"))
+});
+}
+// document.addEventListener('', touchstart(starttime,startposition), false)
 // document.addEventListener('touchstart', touchstart(starttime,startposition), false)
 // document.addEventListener('touchend', touchend(starttime,startposition), false)
 // 下面為丟球
